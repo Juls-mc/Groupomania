@@ -16,7 +16,7 @@ class UserModel {
                 resolve({message : 'Nouvel utilisateur !'})
             })
         })
-    }
+    } 
 
     login(sqlTab, password){
         let sql = 'SELECT * FROM users WHERE email = ?';
