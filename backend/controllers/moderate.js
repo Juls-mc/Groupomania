@@ -38,7 +38,7 @@ exports.deleteComment = (req, res, next) => {
         res.status(400).json({error: 'La requête est non authorisée'})
     }
 };
-
+ 
 exports.getAllPosts = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
