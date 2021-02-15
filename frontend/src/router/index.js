@@ -1,29 +1,51 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Auth from '../components/Auth.vue'
+import Accueil from '../components/Accueil.vue'
+import Profil from '../components/Profil.vue'
+import Forum from '../components/Forum.vue'
+import Post from '../components/FormPost.vue'
+import Moderation from '../components/Moderation.vue'
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Auth',
+    component: Auth
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/Accueil',
+    name: 'Accueil',
+    component: Accueil
+  },
+  {
+    path: '/Accueil/Profil',
+    name: 'Profil',
+    component: Profil
+  },
+  {
+    path: '/Accueil/Forum',
+    name: 'Forum',
+    component: Forum
+  },
+  {
+    path: '/Accueil/Forum/Post',
+    name: 'Post',
+    component: Post
+  },
+  {
+    path: '/Accueil/Moderation',
+    name: 'Moderation',
+    component: Moderation
+  },
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+  routes,
+  mode: 'history'
 })
 
 export default router
