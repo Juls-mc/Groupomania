@@ -64,7 +64,7 @@ export default {
              this.$router.push('/');
         },
         moderation(){
-            this.$router.push('/Accueil/Moderation')
+            this.$router.push('/Accueil/Moderate')
         }
     },
     mounted(){

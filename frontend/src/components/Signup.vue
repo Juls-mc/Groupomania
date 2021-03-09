@@ -69,7 +69,8 @@ export default {
             dataSignupS: "", 
             form: true,
             msg: false,
-            message: ""
+            message: "",
+            dialog: false
         }
     },
     methods: {
