@@ -8,12 +8,17 @@ class UserModel {
     }
 
     signup(sqlTab){
-        let sql = 'INSERT INTO users VALUES(NULL, ?, ?, ?, ?, NULL)';
+        let sql = 'INSERT INTO users (users.lastName, users.firstName, users.email, users.password) VALUES(?, ?, ?, ?)';
         sql = mysql.format(sql, sqlTab);
+        console.log(sqlTab)
+        console.log(sql)
         return new Promise((resolve, reject) =>{
             db.query(sql, function(err, result){
-                if (err) reject({error : 'Erreur inscription'});
-                resolve({message : 'Nouvel utilisateur !'})
+                if (err) {
+                    reject({error : 'Erreur inscription'});
+                } else {
+                    resolve({message : 'Nouvel utilisateur !'})
+                }
             })
         })
     } 
