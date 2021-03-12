@@ -7,7 +7,7 @@ class ModerationModel {
     }
 
     getAllPosts() {
-        let sql = "SELECT posts.id, posts.userId, posts.title, posts.content, DATE_FORMAT(posts.date, '%e/%m/%y à %k:%i:%s') AS date, posts.likes, users.lastName, users.firstName FROM posts JOIN users ON posts.userId = users.id ORDER BY date DESC";
+        let sql = "SELECT p.id, p.userId, p.title, p.content, DATE_FORMAT(p.date, '%e/%m/%y à %k:%i:%s') AS date, p.likes, u.lastName, u.firstName FROM posts p JOIN users u ON p.userId = u.id ORDER BY date DESC";
         return new Promise((resolve) =>{
             db.query(sql, function (err, result, fields) {
                 if (err) throw err;

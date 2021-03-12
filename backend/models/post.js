@@ -135,7 +135,7 @@ class PostModel {
     };
 
     getAllPosts(){
-        let sqlRequest = "SELECT posts.id, posts.userId, posts.title, posts.content, DATE_FORMAT(DATE(posts.date), '%e/%m/%y') AS date, TIME(posts.date) AS time, posts.likes, users.lastName, users.firstName FROM posts JOIN users ON posts.userId = users.id ORDER BY date DESC";
+        let sqlRequest = "SELECT p.id, p.userId, p.title, p.content, DATE_FORMAT(DATE(p.date), '%e/%m/%y') AS date, TIME(p.date) AS time, p.likes, u.lastName, u.firstName FROM posts p JOIN users u ON p.userId = u.id ORDER BY date DESC";
         return new Promise((resolve) =>{
             db.query(sqlRequest, function (err, result, fields) {
                 if (err) throw err;
