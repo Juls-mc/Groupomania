@@ -1,7 +1,7 @@
-const http = require('http');
+const http = require('http'); // Import du package http de node
 const app = require('./app');
 
-const normalizePort = val => {
+const normalizePort = val => { // Fonction qui renvoie un port valide
     const port = parseInt(val, 10);
 
     if (isNaN(port)) {
@@ -15,7 +15,7 @@ const normalizePort = val => {
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-const errorHandler = error => {
+const errorHandler = error => { // Fonction qui recherche les différentes erreurs pour les gérer
     if (error.syscall !== 'listen') {
         throw error;
     }
@@ -35,7 +35,7 @@ const errorHandler = error => {
     }
 };
 
-const server = http.createServer(app);
+const server = http.createServer(app); // création du serveur, l'app est passée en paramètre
 
 server.on('error', errorHandler);
 server.on('listening', () => {
@@ -44,4 +44,4 @@ server.on('listening', () => {
     console.log('Listening on ' + bind);
 });
 
-server.listen(port);
+server.listen(port); // Le serveur écoute la requête envoyée
