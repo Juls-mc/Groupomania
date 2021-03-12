@@ -1,20 +1,20 @@
 const db = require('../db.js');
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
-const ModerateModel = require ('../models/moderate.js');
+const ModerationModel = require ('../models/moderation.js');
 
-let moderateModel = new ModerateModel();
+let moderationModel = new ModerationModel();
 
 
 exports.deletePost = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-    const moderate = decodedToken.moderation; //
-    console.log(moderate);
-    if(moderate === 1){
+    const moderation = decodedToken.moderation; //
+    console.log(moderation);
+    if(moderation === 1){
         let postId = req.params.id;
         let sqlTab = [postId];
-        moderateModel.deletePost(sqlTab)
+        moderationModel.deletePost(sqlTab)
             .then((response) => {
                 res.status(200).json(JSON.stringify(response));
             })
@@ -26,11 +26,11 @@ exports.deletePost = (req, res, next) => {
 exports.deleteComment = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-    const moderate = decodedToken.moderation;
-    if(moderate === 1){
+    const moderation = decodedToken.moderation;
+    if(moderation === 1){
         let commentId = req.params.id;
         let sqlTab = [commentId];
-        moderateModel.deleteComment(sqlTab)
+        moderationModel.deleteComment(sqlTab)
             .then((response) =>{
                 res.status(200).json(JSON.stringify(response));
             })
@@ -42,9 +42,9 @@ exports.deleteComment = (req, res, next) => {
 exports.getAllPosts = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-    const moderate = decodedToken.moderation;
-    if(moderate === 1){
-        moderateModel.getAllPosts()
+    const moderation = decodedToken.moderation;
+    if(moderation === 1){
+        moderationModel.getAllPosts()
             .then((response) => {
                 res.status(200).json(JSON.stringify(response));
             })
@@ -56,9 +56,9 @@ exports.getAllPosts = (req, res, next) => {
 exports.getAllComments = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-    const moderate = decodedToken.moderation;
-    if(moderate === 1){
-        moderateModel.getAllComments()
+    const moderation = decodedToken.moderation;
+    if(moderation === 1){
+        moderationModel.getAllComments()
             .then((response) =>{
                 res.status(200).json(JSON.stringify(response));
             })

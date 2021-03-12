@@ -7,7 +7,7 @@ const app = express();
 
 const postRoutes = require('./routes/post');
 const userRoutes = require('./routes/user');
-const moderateRoutes = require('./routes/moderate');
+const moderationRoutes = require('./routes/moderation');
 
 
 app.use((req, res, next) => {
@@ -25,6 +25,6 @@ app.use(bodyParser.json());
 
 app.use('/api/auth', userRoutes);
 app.use('/api/posts', postRoutes);
-app.use('/api/moderate', moderateRoutes);
+app.use('/api/moderation', moderationRoutes);
 
 module.exports = app;

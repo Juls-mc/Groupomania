@@ -145,7 +145,7 @@ class PostModel {
     };
 
     getComments(sqlTab){
-        let sql= "SELECT comments.comContent, DATE_FORMAT(comments.date, '%e/%m/%y à %k:%i:%s') AS date, comments.id, comments.userId, users.firstName, users.lastName FROM comments JOIN users on comments.userId = users.id WHERE postId = ? ORDER BY date";
+        let sql= "SELECT c.comContent, DATE_FORMAT(c.date, '%e/%m/%y à %k:%i:%s') AS date, c.id, c.userId, u.firstName, u.lastName FROM comments c JOIN users u ON c.userId = u.id WHERE postId = ? ORDER BY date";
         sql = mysql.format(sql, sqlTab);
         return new Promise((resolve) =>{
             db.query(sql, function (err, result, fields){
