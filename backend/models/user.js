@@ -32,10 +32,10 @@ class UserModel {
                 if (!result[0]){
                     reject ({ error : 'Utilisateur introuvable dans la base de données.'});
                 } else {
-                    bcrypt.compare(password, result[0].password)
+                    bcrypt.compare(password, result[0].password) // bcrypt va comparer le mot de passe
                         .then(valid => {
-                            if (!valid) return reject({ error: 'Mot de passe incorrect !' });
-                            resolve({
+                            if (!valid) return reject({ error: 'Mot de passe incorrect !' }); // erreur si le mdp n'est pas valide
+                            resolve({ // génération du token si tout est ok
                                 userId: result[0].id,
                                 moderation: result[0].moderation,
                                 token: jwt.sign(

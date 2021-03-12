@@ -18,8 +18,8 @@ app.use((req, res, next) => {
 });
 
 
-app.use(mongoSanitize()); 
-app.use(helmet()); 
+app.use(mongoSanitize()); // prévient les risques d'injections
+app.use(helmet()); // sécurisation injection
 app.use(bodyParser.json());
 
 

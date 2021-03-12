@@ -6,7 +6,7 @@ class ModerationModel {
     constructor(){
     }
 
-    getAllPosts() {
+    getAllPosts() { // pour afficher tous les posts
         let sql = "SELECT p.id, p.userId, p.title, p.content, DATE_FORMAT(p.date, '%e/%m/%y à %k:%i:%s') AS date, p.likes, u.lastName, u.firstName FROM posts p JOIN users u ON p.userId = u.id ORDER BY date DESC";
         return new Promise((resolve) =>{
             db.query(sql, function (err, result, fields) {
@@ -16,7 +16,7 @@ class ModerationModel {
         })
     };
 
-    deletePost(sqlTab){
+    deletePost(sqlTab){ // pour supprimer tous les posts
         let sql = 'DELETE FROM posts WHERE id = ?';
         sql = mysql.format(sql, sqlTab);
         return new Promise((resolve) =>{
@@ -27,7 +27,7 @@ class ModerationModel {
         })
     };
 
-    getAllComments(){
+    getAllComments(){ // pour afficher tous les commentaires
         let sql = "SELECT c.comContent, DATE_FORMAT(c.date, '%e/%m/%y à %k:%i:%s') AS date, c.id, c.userId, u.firstName, u.lastName FROM comments c JOIN users u ON c.userId = u.id ORDER BY date DESC";
         return new Promise((resolve) =>{
             db.query(sql, function (err, result, fields){
@@ -37,7 +37,7 @@ class ModerationModel {
         })
     };
 
-    deleteComment(sqlTab){
+    deleteComment(sqlTab){ // pour afficher tous les commentaires
         let sql  = 'DELETE FROM comments WHERE id = ?';
         sql = mysql.format(sql, sqlTab);
         return new Promise((resolve) =>{
