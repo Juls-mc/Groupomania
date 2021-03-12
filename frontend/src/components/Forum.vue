@@ -3,12 +3,11 @@
         <top-header/>
         <div class="ml-12">
             <div id= "headTitle">
-                <v-img src="../assets/icon-left-font.png" id ="logo"></v-img>
                 <h1 class="ma-4">Forum de partage</h1>
             </div>
             <router-view></router-view>
             <v-container >
-                <v-btn class="ma-3" color="pink lighten-4 black--text" @click="displayForm">Créer un post</v-btn>
+                <v-btn class="ma-3" color="red black--text" @click="displayForm">Créer un nouveau post</v-btn>
     
                     <v-card class="forum__post ma-3 mt-6" v-for="(post, index) in allPosts" v-bind:key="index">
                         <div class="d-flex justify-space-between">
@@ -40,7 +39,7 @@
                         </v-btn> 
                             
                         <v-btn text @click="afficheCom(post.id)" title="Voir les commentaires">
-                            <v-icon>mdi-comment-eye</v-icon>
+                            <v-icon>mdi-message-text</v-icon>
                             Voir les commentaires 
                         </v-btn>
                     </v-card-text>
@@ -231,9 +230,9 @@ export default {
                     console.log(error);
                 })
         },
-        goDialogUpCom(comContent, comId){
+        goDialogUpCom(content, comId){
             this.dataCom.id = comId;
-            this.dataCom.content = comContent;
+            this.dataCom.comContent = content;
             this.dialogUpCom = true; 
         },
         updateCom(){
@@ -313,12 +312,6 @@ export default {
 <style lang="scss">
     #headTitle{
         margin-bottom: 5%;
-            #logo{
-                width: 20%;
-                position: relative;
-                margin-left: 80%;
-                padding-bottom: 0;
-            }
             h1{
                 text-align: center;
                 margin-top: -5%;

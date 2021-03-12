@@ -2,7 +2,7 @@
 
     <div id="profil" class="d-flex justify-center">
         <top-header/>
-        <v-card class="ma-12" raised>
+        <v-card class="ma-12 pa-6" raised>
             <v-img class="logo" src="../assets/logo.png" width="50px" contain></v-img>
             <v-card-title class="my-3 justify-center">
                 <h1>Mon profil</h1>

@@ -77,22 +77,22 @@ export default {
             this.showComments = true
         },
         deletePost(pId){
-            axios.delete("http://localhost:3000/api/moderate/post/" + pId, {headers: {Authorization: 'Bearer ' + localStorage.token}})
+            axios.delete("http://localhost:3000/api/moderation/post/" + pId, {headers: {Authorization: 'Bearer ' + localStorage.token}})
                 .then(response => {
                     let rep = JSON.parse(response.data);
                     console.log(rep.message);
-                    window.location.assign('http://localhost:8080/Accueil/Moderate');
+                    window.location.assign('http://localhost:8080/Accueil/Moderation');
                 })
                 .catch(error => {
                     console.log(error);    
                 })
         },
         deleteComment(cId){
-            axios.delete("http://localhost:3000/api/moderate/comment/" + cId, {headers: {Authorization: 'Bearer ' + localStorage.token}})
+            axios.delete("http://localhost:3000/api/moderation/comment/" + cId, {headers: {Authorization: 'Bearer ' + localStorage.token}})
                 .then(response => {
                     let rep = JSON.parse(response.data);
                     console.log(rep.message);
-                    window.location.assign('http://localhost:8080/Accueil/Moderate');
+                    window.location.assign('http://localhost:8080/Accueil/Moderation');
                 })
                 .catch(error => {
                     console.log(error);
@@ -100,7 +100,7 @@ export default {
         }
     },
     mounted(){
-        axios.get("http://localhost:3000/api/moderate/posts", {headers: {Authorization: 'Bearer ' + localStorage.token}})
+        axios.get("http://localhost:3000/api/moderation/posts", {headers: {Authorization: 'Bearer ' + localStorage.token}})
             .then(response => {
                 let posts = JSON.parse(response.data);
                 this.allPosts = posts;
@@ -108,7 +108,7 @@ export default {
             .catch(error => {
             console.log(error); 
             });
-        axios.get("http://localhost:3000/api/moderate/comments", {headers: {Authorization: 'Bearer ' + localStorage.token}})
+        axios.get("http://localhost:3000/api/moderation/comments", {headers: {Authorization: 'Bearer ' + localStorage.token}})
                 .then(response => {
                     let com = JSON.parse(response.data);
                     this.allComments = com;
@@ -121,6 +121,12 @@ export default {
 </script>
 
 <style lang="scss">
+
+ #moderation{
+        background-image: url("../assets/images/openspace.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 h1{
     text-align: center;
 }
