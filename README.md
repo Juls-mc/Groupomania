@@ -33,5 +33,10 @@ npm start
 ```
 
 
+Pour connecter la base de donnée :
+
+# Dans .env-exemple mettre vos clé
+# Renommer .env-exemple en .env puis sauvegarder
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
