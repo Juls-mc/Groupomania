@@ -1,12 +1,28 @@
 const db = require('../db.js');
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
+const emailValidator = require('email-validator');
+const passwordValidator = require('password-validator');
 const bcrypt = require('bcrypt');
 const UserModel = require ('../models/user.js');
+
+const passwordSchema = new passwordValidator();
+
+passwordSchema
+    .is().min(6)
+    .is().max(30)
+    .has().lowercase()
+    .has().digits()
+    .has().not().symbols()
+    .has().not().spaces();
 
 let userModel = new UserModel();
 
 exports.signup = (req, res, next) => {
+    if (!emailValidator.validate(req.body.email) || !passwordSchema.validate(req.body.password)) {
+        return res.status(400).json({message: 'Le mot de passe doit contenir une une minuscule et un chiffre. Sa longueur doit être entre 6 et 30 caractères'});
+    } else if (emailValidator.validate(req.body.email) || passwordSchema.validate(req.body.password)) {
+        const maskedMail = MaskData.maskEmail2(req.body.email);
     let email = req.body.email;
     let password = req.body.password;
     let firstName = req.body.firstName;
